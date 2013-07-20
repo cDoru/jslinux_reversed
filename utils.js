@@ -86,3 +86,4 @@ function load_binary(url, callback) {
     req.send(null);
 }
 
+self.load_binary = load_binary;
