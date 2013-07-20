@@ -45,7 +45,9 @@ function SerialPort(pc_emulator, address, set_irq_func, emulname) {
     this.scr = 0;
     this.fcr = 0;
     this.set_irq_func = set_irq_func;
-    this.write_func = function() {}; // TODO: STUB
+    this.write_func = function(data) {
+        console.log(emulname + 'writes to unbound COM port: ' + data);
+    };
     this.tx_fifo = ""; // guest -> wire
     this.rx_fifo = ""; // wire -> guest
     this.baseaddr = address;
