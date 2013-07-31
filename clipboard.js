@@ -75,7 +75,7 @@ ClipboardDevice.prototype.ioport_writeb = function (io_port, byte_value) {
     this.doc_str += String.fromCharCode(byte_value);
 };
 ClipboardDevice.prototype.ioport_readb = function (io_port) {
-    var c, doc_str, retval_byte;
+    var doc_str, retval_byte;
     doc_str = this.doc_str;
     if (this.cur_pos < doc_str.length) {
         retval_byte = doc_str.charCodeAt(this.cur_pos) & 0xff;
@@ -93,7 +93,8 @@ ClipboardDevice.prototype.ioport_writel = function (io_port, dword_value) {
             this.doc_str = this.doc_str.substr(0, dword_value >>> 0);
             break;
         case 1:
-            return this.cur_pos = dword_value >>> 0;
+            this.cur_pos = dword_value >>> 0;
+            break;
         case 2:
             text = String.fromCharCode(dword_value & 0xff) +
                 String.fromCharCode((dword_value >> 8) & 0xff) +
@@ -121,6 +122,7 @@ ClipboardDevice.prototype.ioport_readl = function (io_port) {
             retval_dword |= this.ioport_readb(0) << 16;
             retval_dword |= this.ioport_readb(0) << 24;
             return retval_dword;
+        default:
         case 3:
             if (this.get_boot_time) {
                 return this.get_boot_time() >> 0;

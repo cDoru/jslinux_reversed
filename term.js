@@ -116,7 +116,7 @@ Term.prototype.open = function (container) {
         this.lines[y] = line;
     }
 
-   // TODO: jquery equivalents (!)
+    // TODO: jquery equivalents (!)
 
     table = document.createElement('table');
     table.border = 0;
@@ -199,8 +199,8 @@ Term.prototype.open = function (container) {
     if (container.appendChild) {
         container.appendChild(table);
     } else {
-	//jquery version
-	container.append(table);
+        //jquery version
+        container.append(table);
     }
 };
 
@@ -287,7 +287,7 @@ Term.prototype.show_cursor = function () {
     }
 };
 Term.prototype.scroll = function () {
-    var y, line_char_values, x, character_code, line_index;
+    var line_char_values, x, character_code, line_index;
     if (this.cur_h < this.tot_h) {
         this.cur_h++;
     }
@@ -360,7 +360,7 @@ Term.prototype.write = function (pa) {
     var ua = 0;
     var va = 1;
     var wa = 2;
-    var i, c, fa, ga, l, n, j, oa;
+    var i, c, fa, ga, n, j, oa;
     fa = this.h;
     ga = -1;
     qa(this.y);

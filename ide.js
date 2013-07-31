@@ -231,7 +231,6 @@ IDE_drive.prototype.identify_cb = function () {
 };
 
 IDE_drive.prototype.exec_cmd = function (byte_command) {
-    var n;
     switch (byte_command) {
         case 0xA1: // ATA_CMD_IDENTIFY_PACKET
         case 0xEC: // ATA_CMD_IDENTIFY

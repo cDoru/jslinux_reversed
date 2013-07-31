@@ -189,14 +189,14 @@ CPU_X86.prototype.dump = function () {
     var i, sa, na;
     var ta = [" ES", " CS", " SS", " DS", " FS", " GS", "LDT", " TR"];
     this.dump_short();
-    console.log(""+
+    console.log("" +
         "TSC=" + to_hex_u32(this.cycle_count) +
         " OP=" + to_hex_u8(this.cc_op) +
         " SRC=" + to_hex_u32(this.cc_src) +
         " DST=" + to_hex_u32(this.cc_dst) +
         " OP2=" + to_hex_u8(this.cc_op2) +
         " DST2=" + to_hex_u32(this.cc_dst2));
-    console.log(""+
+    console.log("" +
         "CPL=" + this.cpl +
         " CR0=" + to_hex_u32(this.cr0) +
         " CR2=" + to_hex_u32(this.cr2) +

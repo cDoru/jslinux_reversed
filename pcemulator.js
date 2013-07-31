@@ -56,7 +56,7 @@ PCEmulator.prototype.start = function () {
     setTimeout(this.timer_func.bind(this), 10);
 };
 PCEmulator.prototype.timer_func = function () {
-    var Oa, hi, ii, ji, ki, this_, cpu;
+    var Oa, ii, ji, ki, this_, cpu;
     this_ = this;
     cpu = this_.cpu;
     ii = cpu.cycle_count + 100000;

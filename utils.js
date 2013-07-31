@@ -20,7 +20,7 @@ function load_binary(url, callback) {
 
     /* completion function */
     req.onreadystatechange = function () {
-        var err, data, len, i, buf;
+        var data, len, buf;
 
         if (req.readyState !== 4) {
             return;
