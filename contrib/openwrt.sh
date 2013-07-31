@@ -6,7 +6,7 @@ openwrt_root='../../openwrt/build_dir/target-i386_uClibc-0.9.33.2/root-x86'
 openwrt_root='/home/mmarkk/src/deboo/squeeze'
 
 rm -f hda.img
-fallocate --length=100M hda.img
+fallocate --length=90M hda.img
 mkfs -F -q -t ext2 hda.img
 ddd=outimage
 mkdir -p $ddd
