@@ -50,7 +50,7 @@ var jslinux_scripts = [
 ];
 
 function prepare_jslinux(prefix, callback) {
-    if (window.Worker) {
+    if (typeof Worker != 'undefined') {
         console.log('Using Fast worker model!');
         worker_class = Worker;
         callback();
@@ -77,7 +77,7 @@ function prepare_jslinux(prefix, callback) {
 }
 
 function JSLinuxWithGUI(term_container, linuxname, prefix) {
-    if (!window.Uint8Array || !window.Uint16Array || !window.Int32Array || !window.ArrayBuffer) {
+    if (typeof Uint8Array == 'undefined' || typeof Uint16Array == 'undefined' || typeof Int32Array == 'undefined' || typeof ArrayBuffer == 'undefined') {
         term_container.innerHTML = '<p>Typed arrays are not supported.</p><p>Please use <a href="http://caniuse.com/typedarrays">modern browser</a></p>';
         return;
     }
