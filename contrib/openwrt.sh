@@ -22,6 +22,7 @@ tar -C $openwrt_root \
     --exclude='./usr/share/doc*' \
     --exclude='./usr/share/man*' \
     --exclude='./usr/share/info*' \
+    --exclude='./var/lib/apt*' \
     -c . | tar -C $ddd -x
 
 rm -f $ddd/sbin/init;
