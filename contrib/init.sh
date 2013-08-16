@@ -12,7 +12,13 @@ mount -n -t tmpfs /tmp /tmp
 mkdir -p "/tmp/root"
 ip link set up dev lo
 
-main() { while :; do setsid sh -c "exec bash 3<>/dev/ttyS0 0<&3 1>&3 2>&3 3>&-"; done; }
+main() {
+    echo >/dev/clipboard
+
+    while :; do
+        setsid sh -c "exec bash 0<>/dev/ttyS0 1>&0 2>&0"
+    done
+}
 
 . /dev/clipboard
 
