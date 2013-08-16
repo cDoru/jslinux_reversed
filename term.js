@@ -13,10 +13,12 @@
 
 function jslinux_str2utf8(string) {
         var utftext = "";
+        var n;
+        var c;
 
-        for (var n = 0; n < string.length; n++) {
+        for (n = 0; n < string.length; n++) {
 
-            var c = string.charCodeAt(n);
+            c = string.charCodeAt(n);
 
             if (c < 128) {
                 utftext += String.fromCharCode(c);
@@ -44,6 +46,7 @@ function jslinux_utf82str(utftext) {
         var c = 0;
         var c1 = 0;
         var c2 = 0;
+        var c3 = 0;
 
         while ( i < utftext.length ) {
 
@@ -66,20 +69,8 @@ function jslinux_utf82str(utftext) {
             }
 
         }
-
         return string;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function Term(width, height, handler) {
     this.w = width;
