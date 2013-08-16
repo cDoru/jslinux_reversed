@@ -2,20 +2,32 @@
 
 set -e -u
 
-openwrt_root='../../openwrt/build_dir/target-i386_uClibc-0.9.33.2/root-x86'
-openwrt_root='/home/mmarkk/src/deboo/squeeze'
+if false; then
+    sudo debootstrap \
+        --variant=minbase \
+        --include=psmisc,mini-httpd,net-tools,iproute,iputils-ping,procps,netcat-openbsd,telnet,iptables,wget,tcpdump,curl,gdb,binutils,gcc,libc6-dev,lsof,strace \
+        --exclude=locales,aptitude,gnupg,cron,udev,tasksel,rsyslog,groff-base,manpages,gpgv,man-db,apt,debian-archive-keyring,sysv-rc,sysvinit,insserv,python2.6 \
+        --arch i386 \
+        squeeze squeeze \
+        'http://mirror.yandex.ru/debian'
+fi
+
+IMAGE_SIZE=120 # megabytes
+#icount=`find squeeze | wc -l`
+INODE_COUNT=7000
 
 rm -f hda.img
-fallocate --length=90M hda.img
-mkfs -F -q -t ext2 hda.img
-ddd=outimage
+fallocate --length=${IMAGE_SIZE}M hda.img
+mke2fs -F -q -m 0 -N $INODE_COUNT hda.img
+
+ddd=/tmp/outimage
 mkdir -p $ddd
 
-echo 'root:qwe' | sudo chroot "$openwrt_root" chpasswd
+echo 'root:qwe' | sudo chroot squeeze chpasswd
 sudo unshare -m -- bash -c "
 set -x -e -u
 mount -n -o loop hda.img -t ext2 $ddd
-tar -C $openwrt_root \
+tar -C squeeze \
     --exclude='./var/cache*' \
     --exclude='./usr/share/locale*' \
     --exclude='./usr/share/zoneinfo*' \
@@ -27,7 +39,6 @@ tar -C $openwrt_root \
 
 rm -f $ddd/sbin/init;
 cp -f init.sh $ddd/sbin/init
-
 rm -rf $ddd/root
 ln -s /tmp/root $ddd/root
 
